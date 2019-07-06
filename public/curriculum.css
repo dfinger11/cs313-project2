@@ -1,0 +1,157 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: #43C0F6
+}
+
+ul {
+    max-height: 45px;
+    list-style-type: none;
+    width: 90%; margin-left: auto; margin-right: auto;
+    padding: 0;
+    overflow: hidden;
+    background-color: #F5CE28;
+    border: solid 2px;
+}
+
+h1 {
+    text-align: center;
+    font-family: cursive, sans-serif;
+}
+
+
+h2 {
+    text-align: center;
+    font-family: cursive, sans-serif;
+    font-size: 30px;
+    text-decoration: underline;
+}
+
+
+p {
+    text-align:center;
+    font-size: 20px;
+    font-family: "Times New Roman", Times, serif;
+}
+
+li {
+    float: left;
+    border-right:2px solid black;
+}
+
+li:last-child {
+    border-right: none;
+}
+
+li a {
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+li a:hover:not(.active) {
+    background-color: #F2EEE2;
+}
+
+img {
+    width: 100%;
+}
+
+.logo-image {
+    vertical-align: middle;
+    padding: 13px;
+    display: table-cell;
+    max-width: 100%;
+}
+
+.logo-text {
+    vertical-align: middle;
+    padding: 13px;
+}
+
+.margin-auto {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.left-text {
+    text-align: left;
+}
+
+.indent-text {
+    text-indent: 10px;
+}
+
+.warn-words {
+    color: red;
+}
+
+.just-money {
+    text-decoration: underline;
+}
+
+.dividerHorizontal {
+    max-width: 200px;
+}
+.dividerVertical {
+    height: 20px;
+}
+
+.curriculumBackground {
+    background-color: #43C0F6;
+    width: 95%; height: 450px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.curriculumTitle {
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #F5CE28;
+    border: solid black 3px;
+    max-width: 1000px;
+    font-family: Lucida Bright, serif;
+    font-size: 50px;
+    text-align: center;
+}
+
+.curriculumOutBorder {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1050px;
+    background-color: #F5CE28;
+    border: solid black 1px;
+}
+
+.curriculumInBorder {
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #F2EEE2;
+    max-width: 500px;
+    border: solid black 1px;
+}
+
+.curriculumInBorderTwo {
+    background-color: #F2EEE2;
+    border: solid black 3px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1000px;
+    padding: 20px;
+}
+
+.topNavLi {
+    float: right;
+}
+
+.loginButton {
+    background-color:#F2EEE2;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border: solid black 1px;
+}
+

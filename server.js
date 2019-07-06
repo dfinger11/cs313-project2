@@ -1,33 +1,53 @@
 const express = require('express');
+const session = require('express-session');
 const bodyParser = require('body-parser');
 const app = express();
+const sanitizer = require('sanitize')();
+const crypto = require('crypto');
 
 const { Pool } = require("pg");
 const path = require('path');
 
-//const connectionString = process.env.DATABASE_URL || "postgres://fnixvwmnywquze:914a04d2f29ba1572e12a8f19119e01b009e41ba56342db14a8b9b1d1bf31d93@ec2-50-19-221-38.compute-1.amazonaws.com:5432/dd74p95l3tpdkk";
+var authenticated = false;
+
 const connectionString = process.env.DATABASE_URL || "postgres://deaj:test@localhost:5432/project2";
 
 const pool = new Pool({connectionString: connectionString});
 
 app.set('port', (process.env.PORT || 5000));
 app.use(express.static(__dirname + '/public'));
+app.set('trust proxy', 1);
+app.use(session({
+    secret: 'Keep it secret keep it safe',
+    resave: false,
+    saveUninitialized: false,
+    cookie: { secure: true }
+}));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-app.get('/', (req, res) => res.sendFile( path.join(__dirname, 'public/login.html')));
+app.get('/', function (req, res) {
+    sess = req.session;
+    if(sess.authenticated !== true) {
+        sess.authenticated = false
+    }
+    res.render('pages/home')
+});
+app.get('/curriculum', (req, res) => res.render('pages/curriculum'));
+app.get('/register', (req, res) => res.sendFile( path.join(__dirname, 'public/register.html')));
 app.post('/getUser', getUser);
+app.post('/createUser', createUser);
 
 app.listen(app.get("port"), function () {
     console.log("Now listening for connection on port: ", app.get("port"));
 });
 
 function getUser(request, response) {
-    const username = request.body.username;
-    const password = request.body.password;
+    const username = sanitizer.value(request.username, 'string');
+    const password = sanitizer.value(request.password, 'string');
 
-    getUserFromDb(username, password, function (error, result) {
-        if (error || result == null || result.length != 1) {
+    getUserFromDb(request, username, password, function (error, result) {
+        if (error || result == null || result.length !== 1) {
             response.status(500).json({success: false, data: error});
         } else {
             const username = result[0];
@@ -37,8 +57,39 @@ function getUser(request, response) {
 
 }
 
+function createUser(request, response) {
+    const fname = sanitizer.value(request.fname, 'string');
+    const lname = sanitizer.value(request.lname, 'string');
+    const username = sanitizer.value(request.username, 'string');
+    const password = sanitizer.value(request.password, 'string');
 
-function getUserFromDb(username, password, callback) {
+    addUserToDb(request, fname, lname, username, password, function (error, result) {
+        if (error || result == null || result.length !== 1) {
+            response.status(500).json({success: false, data: error});
+        } else {
+            response.status(200).json({success: true});
+        }
+    });
+}
+
+function addUserToDb(request, fname, lname, username, password, callback) {
+    console.log("Adding user to DB with username: " + username);
+    const sql = "INSERT INTO users(fname, lname, username, password_hash) VALUES ($1, $2, $3, $4)";
+    const params = [fname, lname, username, password];
+
+    pool.query(sql, params, function(err, result) {
+        if (err) {
+            console.log("Error in query: ");
+            console.log(err);
+            callback(err, null);
+        } else {
+            getUserFromDb(request, username, password, callback)
+        }
+        callback(null, result.rows);
+    });
+}
+
+function getUserFromDb(request, username, password, callback) {
     console.log("Getting user from DB with username: " + username);
 
     const sql = "SELECT username FROM users WHERE username =$1 AND password_hash=$2;";
@@ -50,9 +101,11 @@ function getUserFromDb(username, password, callback) {
             console.log("Error in query: ");
             console.log(err);
             callback(err, null);
+        } else {
+            request.session.authenticated = true;
+            request.session.username = username;
+            console.log("Found result: " + JSON.stringify(result.rows));
         }
-
-        console.log("Found result: " + JSON.stringify(result.rows));
 
         callback(null, result.rows);
     });
