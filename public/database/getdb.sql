@@ -16,3 +16,7 @@ INSERT INTO users (fname, lname, username, password_hash) VALUES (
 
 CREATE USER Deaj WITH PASSWORD 'test';
 GRANT SELECT, INSERT, UPDATE ON * TO Deaj;
+
+GRANT SELECT, insert, update  ON users TO PUBLIC;
+
+GRANT USAGE, SELECT ON SEQUENCE users_user_pk_seq to public
