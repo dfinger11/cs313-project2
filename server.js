@@ -43,8 +43,8 @@ app.listen(app.get("port"), function () {
 });
 
 function getUser(request, response) {
-    const username = sanitizer.value(request.username, 'string');
-    const password = sanitizer.value(request.password, 'string');
+    const username = request.body.username;
+    const password = request.body.password;
 
     getUserFromDb(request, username, password, function (error, result) {
         if (error || result == null || result.length !== 1) {
@@ -58,34 +58,42 @@ function getUser(request, response) {
 }
 
 function createUser(request, response) {
-    const fname = sanitizer.value(request.fname, 'string');
-    const lname = sanitizer.value(request.lname, 'string');
-    const username = sanitizer.value(request.username, 'string');
-    const password = sanitizer.value(request.password, 'string');
-
-    addUserToDb(request, fname, lname, username, password, function (error, result) {
-        if (error || result == null || result.length !== 1) {
-            response.status(500).json({success: false, data: error});
+    const fname = request.body.fname;
+    const lname = request.body.lname;
+    const username = request.body.username;
+    const password = request.body.password;
+    addUserToDb(response, request, fname, lname, username, password, function (error) {
+        if (error) {
+            console.log("Something Broke: " + error);
         } else {
-            response.status(200).json({success: true});
+            console.log("Success in calling database.");
         }
     });
 }
 
-function addUserToDb(request, fname, lname, username, password, callback) {
+function addUserToDb(response, request, fname, lname, username, password, callback) {
+    console.log("Adding user to DB with fname: " + fname);
+    console.log("Adding user to DB with lname: " + lname);
     console.log("Adding user to DB with username: " + username);
+    console.log("Adding user to DB with password: " + password);
     const sql = "INSERT INTO users(fname, lname, username, password_hash) VALUES ($1, $2, $3, $4)";
     const params = [fname, lname, username, password];
 
-    pool.query(sql, params, function(err, result) {
+    pool.query(sql, params, function(err) {
         if (err) {
             console.log("Error in query: ");
             console.log(err);
             callback(err, null);
         } else {
-            getUserFromDb(request, username, password, callback)
+            getUserFromDb(request, username, password, function (error, result) {
+                if (error || result == null || result.length !== 1) {
+                    response.status(500).json({success: false, data: error});
+                } else {
+                    const username = result[0];
+                    response.status(200).json(username);
+                }
+            })
         }
-        callback(null, result.rows);
     });
 }
 
