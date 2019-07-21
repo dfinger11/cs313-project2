@@ -1,0 +1,111 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: #43C0F6
+}
+
+ul {
+    max-height: 45px;
+    list-style-type: none;
+    width: 90%; margin-left: auto; margin-right: auto;
+    padding: 0;
+    overflow: hidden;
+    background-color: #F5CE28;
+    border: solid 2px;
+}
+
+h1 {
+    text-align: center;
+    font-family: cursive, sans-serif;
+}
+
+
+p {
+    text-align:center;
+    font-size: 20px;
+    font-family: "Times New Roman", Times, serif;
+}
+
+li {
+    float: left;
+    border-right:2px solid black;
+}
+
+li:last-child {
+    border-right: none;
+}
+
+li a {
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+li a:hover:not(.active) {
+    background-color: #F2EEE2;
+}
+
+img {
+    width: 100%;
+}
+
+.clouds {
+    width: 90%; margin-left: auto; margin-right: auto;
+}
+
+.logo-image {
+    vertical-align: middle;
+    padding: 13px;
+    display: table-cell;
+    max-width: 100%;
+}
+
+.logo-text {
+    vertical-align: middle;
+    padding: 13px;
+}
+
+.font-thin {
+    font-weight: 400;
+}
+.margin-auto {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.homeInBorder {
+    background-color: #F2EEE2;
+    max-width: 1000px;
+    border: solid black 2px;
+}
+
+.homeTitle {
+    margin-top: 30px;
+    background-color: #F5CE28;
+    border: solid black 3px;
+    max-width: 1000px;
+    font-family: Lucida Bright, serif;
+    font-size: 50px; text-align: center;
+}
+
+.fliesRight {
+    margin-left: 60px;
+}
+
+
+
+.topNavLi {
+    float: right;
+}
+
+.loginButton {
+    background-color:#F2EEE2;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border: solid black 1px;
+}
+
+

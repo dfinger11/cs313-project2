@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang = "en" >
+<%if (!authenticated && role == 'parent') {
+    return res.redirect('/');
+} else {%>
+<head>
+    <link rel="stylesheet" href="class.css">
+    <title>Grades</title>
+</head>
+<body>
+<div class="margin-auto clouds">
+    <div id="image">
+        <div class="logo-image">
+            <img src="images/cloudsleft.jpg" alt="clouds" />
+        </div>
+        <div class="logo-image">
+            <img src="images/rainbow.jpg" alt="rainbow" />
+        </div>
+        <div class="logo-image">
+            <img src="images/cloudsright.jpg" alt="clouds" />
+        </div>
+    </div>
+    <div class="logo-text margin-auto homeTitle">
+        <b>Grades</b>
+    </div>
+</div>
+<ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/curriculum">Curriculum</a></li>
+    <li><a href="/grades"><b>Your Child's Grades</b></a></li>
+    <li><a href="/logout">Logout</a></li>
+</ul>
+<div class="logo-text fliesRight">
+    <div class="content">
+        <table id="class">
+            <tr>
+                <th>Student's Name</th>
+                <th>English Grade</th>
+                <th>Math Grade</th>
+                <th>Science Grade</th>
+            </tr>
+            <%
+            for(var i=0; i < students.length; i++) { %>
+            <tr>
+                <td><%= students[i].fname + ' ' +  students[i].lname%></td>
+                <td><%= students[i].grade_english %></td>
+                <td><%= students[i].grade_math %></td>
+                <td><%= students[i].grade_science %></td>
+            </tr>
+            <% } %>
+        </table>
+    </div>
+</div>
+
+<ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/curriculum">Curriculum</a></li>
+    <li><a href="/grades"><b>Your Child's Grades</b></a></li>
+    <li><a href="/logout">Logout</a></li>
+</ul>
+</body>
+<% } %>
+</html>
+
+
+
+

@@ -9,12 +9,15 @@
   "author": "Derek Finger",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^3.0.6",
     "body-parser": "^1.19.0",
     "crypto": "^1.0.1",
     "ejs": "^2.6.2",
     "express": "^4.17.1",
+    "express-sanitizer": "^1.0.5",
     "express-session": "^1.16.2",
     "pg": "^7.11.0",
-    "sanitize": "^2.1.0"
+    "sanitize": "^2.1.0",
+    "sanitizer": "^0.1.3"
   }
 }

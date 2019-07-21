@@ -24,18 +24,27 @@
 <ul>
     <li><a href="/"><b>Home</b></a></li>
     <li><a href="/curriculum">Curriculum</a></li>
+    <%if (!authenticated) { %>
     <li><a href="/register">Register</a></li>
-
     <li class="topNavLi">
         <form class="logo-text" method="POST" action="/getUser">
             Username:
-            <input type="text" name="username" />
+            <input type="text" maxlength='40' name="username" />
             Password:
-            <input type="text" name="password" />
+            <input type="password" name="password" />
             <input class="loginButton" type="submit" value="Login" />
         </form>
     </li>
-
+    <% } else if(role == 'parent') { %>
+    <li> <a href="/grades">Your Child's Grades</a></li>
+    <li><a href="/logout">Logout</a></li>
+    <% } else if(role == 'teacher') {%>
+    <li> <a href="/class">Class</a></li>
+    <li> <a href="/gradesTeacher">Edit Grades</a></li>
+    <li> <a href="/addStudent">Add Student</a></li>
+    <li> <a href="/removeStudent">Remove Student</a></li>
+    <li><a href="/logout">Logout</a></li>
+    <% } %>
 </ul>
 <div class="logo-text fliesRight">
     <div class="logo-image">
@@ -60,6 +69,27 @@
 <ul>
     <li><a href="/"><b>Home</b></a></li>
     <li><a href="/curriculum">Curriculum</a></li>
+    <%if (!authenticated) { %>
+    <li><a href="/register">Register</a></li>
+    <li class="topNavLi">
+        <form class="logo-text" method="POST" action="/getUser">
+            Username:
+            <input type="text" name="username" />
+            Password:
+            <input type="password" name="password" />
+            <input class="loginButton" type="submit" value="Login" />
+        </form>
+    </li>
+    <% } else if(role == 'parent') { %>
+    <li> <a href="/grades">Your Child's Grades</a></li>
+    <li><a href="/logout">Logout</a></li>
+    <% } else if(role == 'teacher') {%>
+    <li> <a href="/class">Class</a></li>
+    <li> <a href="/gradesTeacher">Edit Grades</a></li>
+    <li> <a href="/addStudent">Add Student</a></li>
+    <li> <a href="/removeStudent">Remove Student</a></li>
+    <li><a href="/logout">Logout</a></li>
+    <% } %>
 </ul>
 </body>
 </html>

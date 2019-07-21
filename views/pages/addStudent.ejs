@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html lang = "en" >
+<%if (!authenticated && role == 'teacher') {
+return res.redirect('/');
+} else {%>
 <head>
     <link rel="stylesheet" href="register.css">
-    <title>Register</title>
+    <title>Add Student</title>
 </head>
 <body>
 <div class="margin-auto clouds">
@@ -18,13 +21,17 @@
         </div>
     </div>
     <div class="logo-text margin-auto registerTitle">
-        <b>Register</b>
+        <b>Add Student</b>
     </div>
 </div>
 <ul>
     <li><a href="/">Home</a></li>
     <li><a href="/curriculum">Curriculum</a></li>
-    <li><a href="/register"><b>Register</b></a></li>
+    <li> <a href="/class">Class</a></li>
+    <li> <a href="/gradesTeacher">Edit Grades</a></li>
+    <li> <a href="/addStudent"><b>Add Student</b></a></li>
+    <li> <a href="/removeStudent">Remove Student</a></li>
+    <li><a href="/logout">Logout</a></li>
 </ul>
 
 <table style="margin: auto">
@@ -33,15 +40,13 @@
             <img src="images/fliesright.jpg" alt="Butterflies" />
         </td>
         <td>
-            <form class="logo-text" method="POST" action="/createUser">
-                First Name<br>
+            <form class="logo-text" method="POST" action="/registerStudent">
+                Student First Name:<br>
                 <input type="text" maxlength='40' name="fname"/><br><br>
-                Last Name<br>
+                Student Last Name:<br>
                 <input type="text" maxlength='40' name="lname"/><br><br>
-                Username:<br>
+                Primary <br>Parent's Username:<br>
                 <input type="text" maxlength='40' name="username"/><br><br>
-                Password:<br>
-                <input type="text" name="password"/><br><br>
                 <input class="loginButton" type="submit" value="Login" />
             </form>
         </td>
@@ -52,9 +57,15 @@
 </table>
 <ul>
     <li><a href="/">Home</a></li>
-    <li><a href="/curriculum"><b>Curriculum</b></a></li>
+    <li><a href="/curriculum">Curriculum</a></li>
+    <li> <a href="/class">Class</a></li>
+    <li> <a href="/gradesTeacher">Edit Grades</a></li>
+    <li> <a href="/addStudent"><b>Add Student</b></a></li>
+    <li> <a href="/removeStudent">Remove Student</a></li>
+    <li><a href="/logout">Logout</a></li>
 </ul>
 </body>
+<% } %>
 </html>
 
 

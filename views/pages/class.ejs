@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang = "en" >
+<%if (!authenticated && role == 'teacher') {
+return res.redirect('/');
+} else {%>
+<head>
+    <link rel="stylesheet" href="class.css">
+    <title>Class List</title>
+</head>
+<body>
+<div class="margin-auto clouds">
+    <div id="image">
+        <div class="logo-image">
+            <img src="images/cloudsleft.jpg" alt="clouds" />
+        </div>
+        <div class="logo-image">
+            <img src="images/rainbow.jpg" alt="rainbow" />
+        </div>
+        <div class="logo-image">
+            <img src="images/cloudsright.jpg" alt="clouds" />
+        </div>
+    </div>
+    <div class="logo-text margin-auto homeTitle">
+        <b>Class List</b>
+    </div>
+</div>
+<ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/curriculum">Curriculum</a></li>
+    <li> <a href="/class"><b>Class</b></a></li>
+    <li> <a href="/gradesTeacher">Edit Grades</a></li>
+    <li> <a href="/addStudent">Add Student</a></li>
+    <li> <a href="/removeStudent">Remove Student</a></li>
+    <li><a href="/logout">Logout</a></li>
+</ul>
+<div id="content">
+    <table id="class">
+        <tr>
+            <th>Student's Name</th>
+            <th>English Grade</th>
+            <th>Math Grade</th>
+            <th>Science Grade</th>
+            <th>Parent name</th>
+            <th>Parent Username</th>
+        </tr>
+        <%
+        for(var i=0; i < students.length; i++) { %>
+        <tr>
+            <td><%= students[i].fname + ' ' +  students[i].lname%></td>
+            <td><%= students[i].grade_english %></td>
+            <td><%= students[i].grade_math %></td>
+            <td><%= students[i].grade_science %></td>
+            <td><%= students[i].parent_fname + ' ' +  students[i].parent_lname%></td>
+            <td><%= students[i].username %></td>
+        </tr>
+        <% } %>
+    </table>
+</div>
+<ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/curriculum">Curriculum</a></li>
+    <li> <a href="/class"><b>Class</b></a></li>
+    <li> <a href="/gradesTeacher">Edit Grades</a></li>
+    <li> <a href="/addStudent">Add Student</a></li>
+    <li> <a href="/removeStudent">Remove Student</a></li>
+    <li><a href="/logout">Logout</a></li>
+</ul>
+</body>
+<% } %>
+</html>
+
+
+
+

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang = "en" >
+<%if (!authenticated && role == 'teacher') {
+return res.redirect('/');
+} else {%>
+<head>
+    <link rel="stylesheet" href="register.css">
+    <title>Edit Grades</title>
+</head>
+<body>
+<div class="margin-auto clouds">
+    <div id="image">
+        <div class="logo-image">
+            <img src="images/cloudsleft.jpg" alt="clouds" />
+        </div>
+        <div class="logo-image">
+            <img src="images/rainbow.jpg" alt="rainbow" />
+        </div>
+        <div class="logo-image">
+            <img src="images/cloudsright.jpg" alt="clouds" />
+        </div>
+    </div>
+    <div class="logo-text margin-auto registerTitle">
+        <b>Add Student</b>
+    </div>
+</div>
+<ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/curriculum">Curriculum</a></li>
+    <li> <a href="/class">Class</a></li>
+    <li> <a href="/gradesTeacher">Edit Grades</a></li>
+    <li> <a href="/addStudent"><b>Add Student</b></a></li>
+    <li> <a href="/removeStudent">Remove Student</a></li>
+    <li><a href="/logout">Logout</a></li>
+</ul>
+
+<table style="margin: auto">
+    <tr>
+        <td>
+            <img src="images/fliesright.jpg" alt="Butterflies" />
+        </td>
+        <td>
+            <form class="logo-text" method="POST" action="/editGrade">
+                Student First Name:<br>
+                <input type="text" maxlength='40' name="fname"/><br><br>
+                Student Last Name:<br>
+                <input type="text" maxlength='40' name="lname"/><br><br>
+                Primary <br>Parent's Username:<br>
+                <input type="text" maxlength='40' name="username"/><br><br>
+                Grade you want to edit:<br><br>
+                <select name="subject">
+                    <option value="grade_english">English</option>
+                    <option value="grade_math">Math</option>
+                    <option value="grade_science">Science</option>
+                </select><br><br>
+                New Grade<br>
+                <input type="text" maxlength='2' name="grade"/><br><br>
+                <input class="loginButton" type="submit" value="Login" />
+            </form>
+        </td>
+        <td>
+            <img src="images/fliesleft.jpg" alt="Butterflies" />
+        </td>
+    </tr>
+</table>
+<ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/curriculum">Curriculum</a></li>
+    <li> <a href="/class">Class</a></li>
+    <li> <a href="/gradesTeacher">Edit Grades</a></li>
+    <li> <a href="/addStudent"><b>Add Student</b></a></li>
+    <li> <a href="/removeStudent">Remove Student</a></li>
+    <li><a href="/logout">Logout</a></li>
+</ul>
+</body>
+<% } %>
+</html>
+
+
+
+
