@@ -74,7 +74,7 @@ function getUser(request, response) {
 function createUserAccount(request, response) {
     const fname = sanitizer.sanitize(request.body.fname);
     const lname = sanitizer.sanitize(request.body.lname);
-    role = 'parent';
+    role = 'teacher';
     username = sanitizer.sanitize(request.body.username);
     const password = sanitizer.sanitize(request.body.password);
 

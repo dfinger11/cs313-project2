@@ -17,11 +17,12 @@ CREATE TABLE student (
     parent_fk       INT REFERENCES users(user_pk)
 );
 
-INSERT INTO users (parent_fname, parent_lname, username, password_hash) VALUES (
-    fname,
-    lname,
-    username,
-    password_hash
+INSERT INTO users (parent_fname, parent_lname, role, username, password_hash) VALUES (
+    'teacher',
+    'teacher',
+    'teacher',
+    'teacher',
+    'password_hash'
 );
 
 INSERT INTO  student (fname, lname, grade_english, grade_math, grade_science, parent_fk)  VALUES (
